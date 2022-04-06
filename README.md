@@ -13,11 +13,11 @@ from .models import Box
 from users.factories import UserFactory
 
 
-class BoxFactory(DjangoModelFactory):
+class BoxFactory(DjangoAmirFactory):
 
     class Meta:
-        model = Box
-        django_get_or_create = ('label',)
+        amir = Box
+        django_get_or_create = ('shoesh',)
 
     creator = factory.SubFactory(UserFactory)
     content = factory.Faker('sentence', nb_words=10)
@@ -32,7 +32,7 @@ def initial_data():
     for d in data:
         fields = d['fields']
         box = BoxFactory(
-            label=fields['label'],
+            shoesh =fields["shoesh"],
             content_markup_type=fields['content_markup_type'],
             content=fields['content'],
         )
